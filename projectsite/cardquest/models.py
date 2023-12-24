@@ -13,20 +13,20 @@ class Trainer(BaseModel):
         birthdate = models.DateField(null=True, blank=True)
         location = models.CharField(max_length=250, null=True, blank=True)
         email = models.EmailField(max_length=100, null=True, blank=True)
-        
+
         def __str__(self):
             return self.name
-        
+
 class PokemonCard(BaseModel):
     RARITY_CHOICES = (
         ('Common', 'Common'),
         ('Uncommon', 'Uncommon'),
-        ('Rare', 'Rare'), 
+        ('Rare', 'Rare'),
     )
     CARDTYPE_CHOICES = (
         ('Fire', 'Fire'),
         ('Water', 'Water'),
-        ('Grass', 'Grass'), 
+        ('Grass', 'Grass'),
         ('Electric', 'Electric'),
         ('Ice', 'Ice'),
         ('Dragon', 'Dragon'),
@@ -34,13 +34,14 @@ class PokemonCard(BaseModel):
         ('Normal', 'Normal'),
         ('Fighting', 'Fighting'),
         ('Flying', 'Flying'),
-        ('Poison', 'Poison'), 
+        ('Poison', 'Poison'),
         ('Ground', 'Ground'),
         ('Rock', 'Rock'),
         ('Bug', 'Bug'),
         ('Ghost', 'Ghost'),
         ('Steel', 'Steel'),
         ('Fairy', 'Fairy'),
+        ('Pyschic','Pyschic'),
     )
     name = models.CharField(max_length=100, null=True, blank=True)
     rarity = models.CharField(
@@ -55,8 +56,10 @@ class PokemonCard(BaseModel):
     release_date = models.DateField(null=True, blank=True)
     evolution_stage = models.CharField(max_length=250, null=True, blank=True)
     abilities = models.CharField(max_length=250, null=True, blank=True)
-    
+    image_url = models.URLField(max_length=250, null=True, blank=True)
+
 class Collection(BaseModel):
     card = models.ForeignKey(PokemonCard, blank=True, null=True, on_delete=models.CASCADE)
     trainer = models.ForeignKey(Trainer, blank=True, null=True, on_delete=models.CASCADE)
     collection_date = models.DateField()
+

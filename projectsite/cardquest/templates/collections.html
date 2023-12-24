@@ -1,26 +1,27 @@
-<!-- collections.html -->
-
 {% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
+<a href="{% url 'collection-add' %}" class="btn btn-outline-primary">Add New Collection</a><br>
   <!-- COLLECTIONS -->
-  <!-- <section class="collections-container">
-    <h2>Collections</h2>
+  <section class="collection-container">
     <table class="styled-table">
-      <thead>
+      <tbody>      
         <tr>
           <th>Trainer Name</th>
           <th>Pokemon Card</th>
           <th>Collection Date</th>
+          <th>Action</th>
         </tr>
-      </thead>
-      <tbody>
-        {% for collections in collection %}
+        {% for collection in collections %}
           <tr>
-            <td>{{ collections.trainer.name }}</td>
-            <td>{{ collections.card.name }}</td>
-            <td>{{ collections.collection_date }}</td>
+            <td>{{ collection.trainer.name }}</td>
+            <td>{{ collection.card.name }}</td>
+            <td>{{ collection.collection_date }}</td>
+            <td>
+              <a href="collection_list/{{ collection.id }}" >Edit</a> |
+              <a href="collection_list/{{ collection.id }}/delete" >Delete</a>
+              </td>
           </tr>
         {% empty %}
           <tr>
@@ -31,36 +32,8 @@
         {% endfor %}
       </tbody>
     </table>
-  </section> -->
-  <main>
-    <section class="collection-container">
-      <table class="styled-table">
-        <tbody>
-          <tr>
-            <th>Trainer</th>
-            <th>Pokemon Card</th>
-            <th>Collection Date</th>
-          </tr>
-
-          <tr>
-            <td>Ash</td>
-            <td>Pikachu</td>
-            <td>2023-01-23</td>
-          </tr>
-          <tr>
-            <td>Ash</td>
-            <td>Pikachu</td>
-            <td>2023-01-23</td>
-          </tr>
-          <tr>
-            <td>Ash</td>
-            <td>Pikachu</td>
-            <td>2023-01-23</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-  </main>
-  
-{% include 'includes/footer.html' %}
+  </section> 
+  <div>
+    {% include 'includes/pagination.html' %}
+  </div> 
 {% endblock %}
